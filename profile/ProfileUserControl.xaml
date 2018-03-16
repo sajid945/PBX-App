@@ -1,0 +1,67 @@
+﻿<core:BaseUserControl x:Class="RevePbx.modules.profile.ProfileUserControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      mc:Ignorable="d"
+                      xmlns:core="clr-namespace:RevePbx.modules.core"
+                      d:DesignHeight="600" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Name="InformationHeader">
+            <Grid Margin="{StaticResource ComponentMargin}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Style="{StaticResource InfoHeaderFaceImage}" />
+
+                <Grid Grid.Column="0">
+                    <Button Name="PhotoUploadButton"
+                            Margin="3"
+                            Height="10"
+                            HorizontalAlignment="Center"
+                            Content="Change"
+                            Foreground="{StaticResource ThemeColor}"
+                            BorderBrush="Transparent"
+                            Click="PhotoUploadButton_Click"
+                            Visibility="Collapsed" />
+                </Grid>
+
+                <Canvas Grid.Column="0" Style="{StaticResource InfoHeaderOnlineStatus}">
+                    <Ellipse />
+                </Canvas>
+
+                <Grid Grid.Column="1" Margin="0,10">
+                    <StackPanel Orientation="Vertical" Margin="0 20 0 -40">
+                        <TextBlock
+                            Text="{Binding SelfInformation.UserId, Converter={StaticResource UserIdToNameValueConverter}}"
+                            ToolTip="{Binding UserId}" Style="{StaticResource ChatHeaderName}" Padding="0, 5" />
+                        <TextBlock Name="StatusBlock" Text="{Binding SelfInformation.StatusNote}"
+                                   Style="{StaticResource ChatHeaderDescription}" Padding="0 5 0 0" />
+                        <TextBox Name="StatusBox" Text="{Binding SelfInformation.StatusNote}" Visibility="Collapsed"
+                                 Padding="0 5 0 0" />
+                        <TextBlock Text="{Binding SelfInformation.UserId}"
+                                   Style="{StaticResource ChatHeaderDescription}" Padding="0 5 0 0" />
+
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox Name="AvailabilityComboBox" Width="40" Visibility="Collapsed" Margin="3" />
+
+                            <Button Name="EditButton" Height="10" Margin="3" HorizontalAlignment="Right" Content="Edit"
+                                    Foreground="{StaticResource ThemeColor}" BorderBrush="Transparent"
+                                    Click="EditButton_Click" />
+                        </StackPanel>
+
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</core:BaseUserControl>

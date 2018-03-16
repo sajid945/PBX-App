@@ -1,0 +1,34 @@
+﻿<core:BaseUserControl x:Class="RevePbx.modules.history.HistoryListUserControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:core="clr-namespace:RevePbx.modules.core"
+                      xmlns:history="clr-namespace:RevePbx.modules.history"
+                      mc:Ignorable="d"
+                      d:DesignHeight="600" d:DesignWidth="320">
+
+    <UserControl.Resources>
+        <history:HistoryDataTemplateSelector x:Key="HistoryDataTemplateSelector"
+                                             ContactHistoryDataTemplate="{StaticResource BuddyHistoryUnit}"
+                                             GroupHistoryDataTemplate="{StaticResource GroupHistoryUnit}"
+                                             CallHistoryDataTemplate="{StaticResource CallHistoryUnit}" />
+    </UserControl.Resources>
+
+    <Grid Margin="10,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="GridSearchTextbox" Grid.Row="0" />
+
+        <ScrollViewer Grid.Row="1">
+            <ListView x:Name="HistoryList"
+                      ItemTemplateSelector="{StaticResource HistoryDataTemplateSelector}"
+                      ItemsSource="{Binding HistoryContainerList}"
+                      Style="{StaticResource ListViewContent}"
+                      SelectionChanged="HistoryList_OnSelectionChanged" />
+        </ScrollViewer>
+    </Grid>
+</core:BaseUserControl>

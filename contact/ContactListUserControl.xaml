@@ -1,0 +1,27 @@
+﻿<core:BaseUserControl x:Class="RevePbx.modules.contact.ContactListUserControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:core="clr-namespace:RevePbx.modules.core"
+                      xmlns:contact="clr-namespace:RevePbx.modules.contact"
+                      mc:Ignorable="d"
+                      d:DesignHeight="600" d:DesignWidth="320">
+
+    <Grid Margin="10,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="GridSearchTextbox" Grid.Row="0" />
+
+        <ScrollViewer Grid.Row="1">
+            <ListView x:Name="ContactList"
+                      ItemsSource="{Binding ContactList}"
+                      ItemTemplate="{StaticResource ContactUnit}"
+                      Style="{StaticResource ListViewContent}"
+                      SelectionChanged="ContactList_OnSelectionChanged" />
+        </ScrollViewer>
+    </Grid>
+</core:BaseUserControl>
